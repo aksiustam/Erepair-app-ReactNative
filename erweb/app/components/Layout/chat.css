@@ -1,0 +1,3 @@
+.min-w-fit-minus {
+  min-width: calc(fit-content - 80px);
+}

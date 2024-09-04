@@ -1,0 +1,87 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.0.x"]
+}
+
+model Admin {
+  id        Int       @id @default(autoincrement())
+  email     String?   @unique
+  name      String?
+  tel       String?
+  password  String?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  Role      Role      @default(ADMIN)
+  Account   Account[]
+  Chat      Chat[]
+
+  @@index([email])
+}
+
+model Chat {
+  id        Int       @id @unique @default(autoincrement())
+  title     String?
+  subtitle  String?
+  date      DateTime?
+  unread    Int       @default(0)
+  chat      Json?
+  archive   Boolean?  @default(true)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  User      User?     @relation(fields: [userId], references: [id])
+  userId    Int       @unique
+  Admin     Admin?    @relation(fields: [adminId], references: [id])
+  adminId   Int
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String?
+  email         String?   @unique
+  password      String?
+  deviceID      String?
+  firebaseToken String?
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @updatedAt
+  Role          Role      @default(USER)
+  Chat          Chat?
+}
+
+model Ayarlar {
+  id        Int       @id @default(autoincrement())
+  mail      Json?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Account {
+  id                       String   @id @default(cuid())
+  userId                   Int      @unique
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String?  @db.Text
+  access_token             String?  @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String?  @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+  Admin                    Admin?   @relation(fields: [adminId], references: [id])
+  adminId                  Int?
+
+  @@index([userId])
+}
