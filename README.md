@@ -8,5 +8,5 @@ Uygulamada Canlı Chat sistemi vardır. Uygulamaya üye olanlar chat sistemi ile
 
 Uygulamada bilgisi girilen cihazın fotoğraf,video ve ses kaydı yaptıktan sonra bilgileri zipleyip download klasörüne kopyalıyor.
 
-Uygulama daha yapım aşamasındadır...
+Uygulamada Expo Kullanılmamıştır. Bare React-Native ile yapılmıştır ve tamamlanmamıştır ( Yapım Aşamasında ).
  
