@@ -1,3 +1,15 @@
+# E-Repair Application for AydTanıtım
+
+## Features:
+- Custom **camera integration** for capturing photos and videos.
+- **Audio recording** functionality.
+- **Live chat system** that allows registered users to communicate with the website admin (refreshes every 10 seconds).
+- The application collects device information along with photos, videos, and audio recordings, then compresses the data into a **ZIP file** and saves it to the download folder.
+- Built with **bare React Native** (Expo was not used).
+- The project is **still under development** and not yet completed.
+
+### Status: In Progress
+
 # Erepair
 
 AydTanıtım için yapmış olduğum E-Repair Uygulaması.
